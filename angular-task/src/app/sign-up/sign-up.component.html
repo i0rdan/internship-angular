@@ -1,0 +1,23 @@
+<p>Angular Task (Sign Up)</p>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="login">
+        <div *ngIf="_login?.invalid && (_login?.dirty || _login?.touched)">
+            <span *ngIf="_login?.errors?.required">Login Required</span>
+            <span *ngIf="_login?.errors?.minlength">Login must be at least 5 characters</span>
+            <span *ngIf="_login?.errors?.maxlength">Login must be no longer than 16 characters</span>
+        </div>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input id="password" type="text" formControlName="password">
+        <div *ngIf="_password?.invalid && (_password?.dirty || _password?.touched)">
+            <span *ngIf="_password?.errors?.required">Password Required</span>
+            <span *ngIf="_password?.errors?.minlength">Password must be at least 8 characters</span>
+            <span *ngIf="_password?.errors?.maxlength">Password must be no longer than 16 characters</span>
+        </div>
+    </div>
+    <a routerLink="/sign-in">Already have an account?</a>
+    <button type="submit" [disabled]="!_password?.valid || !_login?.valid">Sign Up</button>
+</form>
