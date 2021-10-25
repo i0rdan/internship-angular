@@ -1,0 +1,19 @@
+<p>Angular Task (Sign In)</p>
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="login">
+        <div *ngIf="checkValid('showLoginErr')">
+            <span *ngIf="checkValid('loginReq')">Login Required</span>
+        </div>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input id="password" type="text" formControlName="password">
+        <div *ngIf="checkValid('showPassErr')">
+            <span *ngIf="checkValid('passReq')">Password Required</span>
+        </div>
+    </div>
+    <a routerLink="/sign-up">No account?</a>
+    <button type="submit" [disabled]="checkValid('buttonCheck')">Sign In</button>
+</form>
