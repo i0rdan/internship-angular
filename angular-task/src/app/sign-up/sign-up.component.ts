@@ -42,6 +42,42 @@ export class SignUpComponent implements OnInit {
     return this.signUpForm.get('password');
   }
 
+  checkValid(param: string) {
+    let checkRes: boolean | undefined;
+    switch (param) {
+      case 'showLoginErr':
+        checkRes = this._login?.invalid && (this._login?.dirty || this._login?.touched);
+        break;
+      case 'showPassErr':
+        checkRes = this._password?.invalid && (this._password?.dirty || this._password?.touched);
+        break;
+      case 'loginReq':
+        checkRes = this._login?.errors?.required;
+        break;
+      case 'passReq':
+        checkRes = this._password?.errors?.required;
+        break;
+      case 'loginMin':
+        checkRes = this._login?.errors?.minlength;
+        break;
+      case 'passMin':
+        checkRes = this._password?.errors?.minlength;
+        break;
+      case 'loginMax':
+        checkRes = this._login?.errors?.maxlength;
+        break;
+      case 'passMax':
+        checkRes = this._password?.errors?.maxlength;
+        break;
+      case 'buttonCheck':
+        checkRes = !this._password?.valid || !this._login?.valid;
+        break;
+      default:
+        console.log('No correct');
+    }
+    return checkRes;
+  }
+
   onSubmit() {
     if(this.storage.onSignUp(this._login?.value, this._password?.value)) {
       alert('Welcome new user!');

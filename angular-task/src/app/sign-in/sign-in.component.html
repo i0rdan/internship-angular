@@ -3,17 +3,17 @@
     <div>
         <label for="username">Username</label>
         <input id="username" type="text" formControlName="login">
-        <div *ngIf="_login?.invalid && (_login?.dirty || _login?.touched)">
-            <span *ngIf="_login?.errors?.required">Login Required</span>
+        <div *ngIf="checkValid('showLoginErr')">
+            <span *ngIf="checkValid('loginReq')">Login Required</span>
         </div>
     </div>
     <div>
         <label for="password">Password</label>
         <input id="password" type="text" formControlName="password">
-        <div *ngIf="_password?.invalid && (_password?.dirty || _password?.touched)">
-            <span *ngIf="_password?.errors?.required">Password Required</span>
+        <div *ngIf="checkValid('showPassErr')">
+            <span *ngIf="checkValid('passReq')">Password Required</span>
         </div>
     </div>
     <a routerLink="/sign-up">No account?</a>
-    <button type="submit" [disabled]="!_password?.valid || !_login?.valid">Sign In</button>
+    <button type="submit" [disabled]="checkValid('buttonCheck')">Sign In</button>
 </form>

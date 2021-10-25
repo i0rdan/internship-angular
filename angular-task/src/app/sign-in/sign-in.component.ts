@@ -45,4 +45,28 @@ export class SignInComponent implements OnInit {
       alert('Check login or password');
     }
   }
+
+  checkValid(param: string) {
+    let checkRes: boolean | undefined;
+    switch (param) {
+      case 'showLoginErr':
+        checkRes = this._login?.invalid && (this._login?.dirty || this._login?.touched);
+        break;
+      case 'showPassErr':
+        checkRes = this._password?.invalid && (this._password?.dirty || this._password?.touched);
+        break;
+      case 'loginReq':
+        checkRes = this._login?.errors?.required;
+        break;
+      case 'passReq':
+        checkRes = this._password?.errors?.required;
+        break;
+      case 'buttonCheck':
+        checkRes = !this._password?.valid || !this._login?.valid;
+        break;
+      default:
+        console.log('No correct');
+    }
+    return checkRes;
+  }
 }
